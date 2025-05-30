@@ -17,7 +17,7 @@ from telegram.ext import (
 )
 
 # Configuration
-TOKEN = "6525101441:AAEBmDD8PT2PDsmbvlfzXcWVBu6QCKFhbHk"
+TOKEN = "" #add your bot token
 DATA_DIR = "data"
 os.makedirs(DATA_DIR, exist_ok=True)
 
