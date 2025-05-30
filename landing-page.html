@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch File Manager Bot - Telegram File Sharing Made Simple</title>
+    
+    <!-- TailwindCSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom Styles -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'manrope': ['Manrope', 'sans-serif'],
+                    },
+                    colors: {
+                        'telegram-blue': '#6366f1',
+                        'telegram-dark': '#0f172a',
+                        'telegram-light': '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.3);
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-telegram-light dark:bg-telegram-dark text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="fixed top-4 right-4 z-50 p-2 rounded-full glass-card hover:scale-105 transition-all">
+        <svg class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+        <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
+        </svg>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen relative overflow-hidden flex items-center justify-center px-4">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-telegram-blue/10 to-purple-500/10 dark:from-telegram-blue/20 dark:to-purple-500/20">
+            <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        </div>
+        
+        <!-- Floating Icons -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="floating absolute top-1/4 left-1/4 text-4xl">📁</div>
+            <div class="floating absolute top-1/3 right-1/4 text-4xl" style="animation-delay: -2s">📊</div>
+            <div class="floating absolute bottom-1/4 left-1/3 text-4xl" style="animation-delay: -4s">✉️</div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="container mx-auto max-w-6xl relative z-10 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">
+                Organize, Share, and Track Files — From Telegram
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Create named batches, track downloads, clean inboxes. All powered by a single Telegram bot.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://t.me/BatchFileManagerBot" target="_blank" 
+                   class="px-8 py-4 bg-telegram-blue hover:bg-telegram-blue/90 text-white rounded-3xl font-semibold text-lg transition-all hover:scale-105 shadow-lg">
+                    🚀 Launch Bot on Telegram
+                </a>
+                <a href="#features" 
+                   class="px-8 py-4 bg-white/10 dark:bg-gray-800/50 backdrop-blur-xl rounded-3xl font-semibold text-lg transition-all hover:scale-105">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 relative">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">
+                Powerful Features for <span class="bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">Smart File Management</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Batch File Sharing -->
+                <div class="glass-card p-8 rounded-3xl hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-semibold mb-3">Batch File Sharing</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Group related files under one title for organized content delivery.</p>
+                </div>
+
+                <!-- Inline Button Delivery -->
+                <div class="glass-card p-8 rounded-3xl hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-4">📬</div>
+                    <h3 class="text-xl font-semibold mb-3">Inline Button Delivery</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Files sent with clean, tappable buttons for seamless access.</p>
+                </div>
+
+                <!-- Smart Search System -->
+                <div class="glass-card p-8 rounded-3xl hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-xl font-semibold mb-3">Smart Search System</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Find batches or files instantly with powerful search capabilities.</p>
+                </div>
+
+                <!-- Download & User Stats -->
+                <div class="glass-card p-8 rounded-3xl hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-semibold mb-3">Download & User Stats</h3>
+                    <p class="text-gray-600 dark:text-gray-300">View top files and track user engagement with detailed analytics.</p>
+                </div>
+
+                <!-- Auto Message Cleanup -->
+                <div class="glass-card p-8 rounded-3xl hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-4xl mb-4">⏳</div>
+                    <h3 class="text-xl font-semibold mb-3">Auto Message Cleanup</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Files self-delete after 5 minutes to keep chats clean and organized.</p>
+                </div>
+
+                <!-- Admin Control -->
+                <div class="glass-card p-8 rounded-3xl hover:scale-105 transition-all duration-300" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-semibold mb-3">Admin Control</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Only owners can edit or delete batches for secure content management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Bot Preview Panel -->
+    <section class="py-20 px-4 relative bg-gradient-to-b from-transparent to-telegram-blue/5 dark:to-telegram-blue/10">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">
+                See It In <span class="bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">Action</span>
+            </h2>
+
+            <!-- Preview Toggle -->
+            <div class="flex justify-center mb-8" data-aos="fade-up">
+                <div class="glass-card p-1 rounded-full inline-flex">
+                    <button class="px-6 py-2 rounded-full bg-telegram-blue text-white font-medium" id="user-view-btn">User View</button>
+                    <button class="px-6 py-2 rounded-full text-gray-600 dark:text-gray-300 font-medium" id="admin-view-btn">Admin View</button>
+                </div>
+            </div>
+
+            <!-- Chat Preview -->
+            <div class="max-w-2xl mx-auto glass-card rounded-3xl p-6 shadow-2xl" data-aos="zoom-in">
+                <!-- Chat Header -->
+                <div class="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-700">
+                    <div class="w-10 h-10 rounded-full bg-telegram-blue flex items-center justify-center text-white font-bold">BF</div>
+                    <div>
+                        <h3 class="font-semibold">Batch File Manager Bot</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">online</p>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="py-6 space-y-4" id="chat-messages">
+                    <!-- User Message -->
+                    <div class="flex justify-end">
+                        <div class="bg-telegram-blue text-white rounded-2xl rounded-tr-none px-4 py-2 max-w-[80%]">
+                            /createbatch ProjectX
+                        </div>
+                    </div>
+
+                    <!-- Bot Response -->
+                    <div class="flex justify-start">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-tl-none px-4 py-2 max-w-[80%]">
+                            <p class="mb-2">✅ Batch "ProjectX" created successfully!</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Reply to this message with files to add them to the batch.</p>
+                        </div>
+                    </div>
+
+                    <!-- User Upload -->
+                    <div class="flex justify-end">
+                        <div class="bg-telegram-blue text-white rounded-2xl rounded-tr-none px-4 py-2 max-w-[80%]">
+                            📎 project_document.pdf
+                        </div>
+                    </div>
+
+                    <!-- Bot Confirmation -->
+                    <div class="flex justify-start">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-tl-none px-4 py-2 max-w-[80%]">
+                            <p>✅ File added to "ProjectX" batch</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <button class="px-3 py-1 bg-telegram-blue/10 text-telegram-blue rounded-lg text-sm">📤 Share Batch</button>
+                                <button class="px-3 py-1 bg-telegram-blue/10 text-telegram-blue rounded-lg text-sm">📊 View Stats</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin View Messages (Hidden by default) -->
+                <div class="py-6 space-y-4 hidden" id="admin-messages">
+                    <!-- Admin Stats -->
+                    <div class="flex justify-start">
+                        <div class="bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-tl-none px-4 py-2 max-w-[80%]">
+                            <p class="font-semibold mb-2">📊 Batch Statistics</p>
+                            <div class="space-y-2 text-sm">
+                                <p>📁 Total Files: 12</p>
+                                <p>👥 Total Downloads: 156</p>
+                                <p>⭐ Top File: project_document.pdf (89 downloads)</p>
+                            </div>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <button class="px-3 py-1 bg-red-500/10 text-red-500 rounded-lg text-sm">🗑️ Delete Batch</button>
+                                <button class="px-3 py-1 bg-telegram-blue/10 text-telegram-blue rounded-lg text-sm">📝 Edit Batch</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 px-4 relative">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">
+                How It <span class="bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">Works</span>
+            </h2>
+
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-telegram-blue to-purple-600 rounded-full"></div>
+
+                <!-- Timeline Steps -->
+                <div class="space-y-16">
+                    <!-- Step 1 -->
+                    <div class="relative" data-aos="fade-right">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12 text-right">
+                                <div class="glass-card p-6 rounded-3xl inline-block">
+                                    <div class="text-4xl mb-4">📁</div>
+                                    <h3 class="text-xl font-semibold mb-2">Create a Batch</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Start by creating a named batch with a simple command</p>
+                                    <code class="block mt-3 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg text-sm font-mono">/createbatch ProjectX</code>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-telegram-blue flex items-center justify-center text-white font-bold">1</div>
+                            <div class="w-1/2 pl-12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative" data-aos="fade-left">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-telegram-blue flex items-center justify-center text-white font-bold">2</div>
+                            <div class="w-1/2 pl-12">
+                                <div class="glass-card p-6 rounded-3xl inline-block">
+                                    <div class="text-4xl mb-4">📤</div>
+                                    <h3 class="text-xl font-semibold mb-2">Upload Files</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Reply to the batch message with your files</p>
+                                    <div class="mt-3 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                        <span>📎 project_document.pdf</span>
+                                        <span>📎 presentation.pptx</span>
+                                        <span>📎 data.csv</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative" data-aos="fade-right">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12 text-right">
+                                <div class="glass-card p-6 rounded-3xl inline-block">
+                                    <div class="text-4xl mb-4">📲</div>
+                                    <h3 class="text-xl font-semibold mb-2">Send with Inline Buttons</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Share your batch with clean, tappable buttons</p>
+                                    <div class="mt-3 flex flex-wrap gap-2">
+                                        <button class="px-3 py-1 bg-telegram-blue/10 text-telegram-blue rounded-lg text-sm">📤 Share Batch</button>
+                                        <button class="px-3 py-1 bg-telegram-blue/10 text-telegram-blue rounded-lg text-sm">📊 View Stats</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-telegram-blue flex items-center justify-center text-white font-bold">3</div>
+                            <div class="w-1/2 pl-12"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative" data-aos="fade-left">
+                        <div class="flex items-center">
+                            <div class="w-1/2 pr-12"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-telegram-blue flex items-center justify-center text-white font-bold">4</div>
+                            <div class="w-1/2 pl-12">
+                                <div class="glass-card p-6 rounded-3xl inline-block">
+                                    <div class="text-4xl mb-4">📊</div>
+                                    <h3 class="text-xl font-semibold mb-2">Track Views & Clean Up</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Monitor downloads and let messages auto-clean</p>
+                                    <div class="mt-3 space-y-2 text-sm">
+                                        <p class="flex items-center gap-2">
+                                            <span>👥 Total Downloads:</span>
+                                            <span class="font-semibold">156</span>
+                                        </p>
+                                        <p class="flex items-center gap-2">
+                                            <span>⏳ Auto-delete:</span>
+                                            <span class="font-semibold">5 minutes</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Cleanup Section -->
+    <section class="py-20 px-4 relative bg-gradient-to-b from-transparent to-telegram-blue/5 dark:to-telegram-blue/10">
+        <div class="container mx-auto max-w-6xl">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                    Privacy <span class="bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">First</span>
+                </h2>
+                <div class="glass-card p-8 rounded-3xl space-y-6">
+                    <div class="flex justify-center gap-4 text-4xl mb-6">
+                        <span>🔐</span>
+                        <span>🗑️</span>
+                        <span>📊</span>
+                    </div>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        Your files are handled with utmost privacy. We store only metadata — never the actual content. Messages expire by default unless batch-pinned, and the bot never shares file data with third parties.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4 mt-8">
+                        <div class="flex items-center gap-2 px-4 py-2 bg-green-500/10 text-green-500 rounded-lg">
+                            <span>✓</span>
+                            <span>Zero Content Storage</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-blue-500/10 text-blue-500 rounded-lg">
+                            <span>✓</span>
+                            <span>Auto Message Cleanup</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-purple-500/10 text-purple-500 rounded-lg">
+                            <span>✓</span>
+                            <span>Privacy-First Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Creator Section -->
+    <section class="py-20 px-4 relative">
+        <div class="container mx-auto max-w-6xl">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                    Built by <span class="bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">Silent Programmer</span>
+                </h2>
+                <div class="glass-card p-8 rounded-3xl">
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                        Telegram bots crafted for power users and privacy lovers. Focused on creating tools that enhance productivity while maintaining user privacy.
+                    </p>
+                    <div class="flex justify-center gap-4">
+                        <a href="https://t.me/silentprogrammer" target="_blank" 
+                           class="px-6 py-3 bg-telegram-blue hover:bg-telegram-blue/90 text-white rounded-xl font-medium transition-all hover:scale-105 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.29-.49.8-.75 3.12-1.36 5.2-2.26 6.24-2.7 3.12-1.3 3.77-1.52 4.19-1.52.09 0 .29.02.42.12.11.08.14.19.15.27-.01.06.01.24 0 .38z"/>
+                            </svg>
+                            Telegram
+                        </a>
+                        <a href="https://github.com/silentprogrammer" target="_blank" 
+                           class="px-6 py-3 bg-gray-800 hover:bg-gray-900 text-white rounded-xl font-medium transition-all hover:scale-105 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-20 px-4 relative bg-gradient-to-b from-transparent to-telegram-blue/5 dark:to-telegram-blue/10">
+        <div class="container mx-auto max-w-6xl">
+            <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                    Ready to <span class="bg-clip-text text-transparent bg-gradient-to-r from-telegram-blue to-purple-600">Batch Your Content</span>?
+                </h2>
+                <div class="glass-card p-8 rounded-3xl space-y-8">
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        Start organizing and sharing your files with the power of Telegram's native interface.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="https://t.me/BatchFileManagerBot" target="_blank" 
+                           class="px-8 py-4 bg-telegram-blue hover:bg-telegram-blue/90 text-white rounded-3xl font-semibold text-lg transition-all hover:scale-105 shadow-lg flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 6.627 5.374 12 12 12 6.627 0 12-5.373 12-12 0-6.626-5.373-12-12-12zm3.224 17.871c.188.133.424.166.646.085.222-.082.374-.258.397-.448.023-.19-.082-.38-.275-.51-1.893-1.194-3.224-2.354-3.224-2.354s-1.893-1.194-3.224-2.354c-.193-.13-.298-.32-.275-.51.023-.19.175-.366.397-.448.222-.082.458-.048.646.085 1.893 1.194 3.224 2.354 3.224 2.354s1.893 1.194 3.224 2.354z"/>
+                            </svg>
+                            Launch File Manager Bot
+                        </a>
+                        <a href="https://github.com/silentprogrammer/batch-file-manager-bot" target="_blank" 
+                           class="px-8 py-4 bg-gray-800 hover:bg-gray-900 text-white rounded-3xl font-semibold text-lg transition-all hover:scale-105 flex items-center justify-center gap-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View GitHub Repo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Built with bytes & intention — by Silent Programmer
+                    </p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-telegram-blue dark:hover:text-telegram-blue transition-colors">Docs</a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-telegram-blue dark:hover:text-telegram-blue transition-colors">Help</a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-telegram-blue dark:hover:text-telegram-blue transition-colors">Privacy</a>
+                    <a href="https://github.com/silentprogrammer/batch-file-manager-bot" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-telegram-blue dark:hover:text-telegram-blue transition-colors">GitHub</a>
+                    <a href="https://t.me/silentprogrammer" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-telegram-blue dark:hover:text-telegram-blue transition-colors">Telegram Channel</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+                © 2024 Batch File Manager Bot. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AOS -->
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        // View Toggle
+        const userViewBtn = document.getElementById('user-view-btn');
+        const adminViewBtn = document.getElementById('admin-view-btn');
+        const chatMessages = document.getElementById('chat-messages');
+        const adminMessages = document.getElementById('admin-messages');
+
+        userViewBtn.addEventListener('click', () => {
+            userViewBtn.classList.add('bg-telegram-blue', 'text-white');
+            userViewBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
+            adminViewBtn.classList.remove('bg-telegram-blue', 'text-white');
+            adminViewBtn.classList.add('text-gray-600', 'dark:text-gray-300');
+            chatMessages.classList.remove('hidden');
+            adminMessages.classList.add('hidden');
+        });
+
+        adminViewBtn.addEventListener('click', () => {
+            adminViewBtn.classList.add('bg-telegram-blue', 'text-white');
+            adminViewBtn.classList.remove('text-gray-600', 'dark:text-gray-300');
+            userViewBtn.classList.remove('bg-telegram-blue', 'text-white');
+            userViewBtn.classList.add('text-gray-600', 'dark:text-gray-300');
+            adminMessages.classList.remove('hidden');
+            chatMessages.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
